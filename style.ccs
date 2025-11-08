@@ -1,0 +1,322 @@
+ange link color." */
+   
+body {
+    /* 1. Set the image file path */
+    background-image: url('gaee.png');
+    
+    /* 2. Prevent the image from tiling/repeating (Optional, but usually required) */
+    background-repeat: no-repeat;
+    
+    /* 3. Ensure the image covers the entire screen, cropping if necessary */
+    background-size: cover;
+    
+    /* 4. Keep the image fixed in place so the content scrolls over it */
+    background-attachment: fixed;
+
+    /* === ADD THIS LINE === */
+    /* Hides any content (like the scaled-up surfer) that spills horizontally */
+    overflow-x: hidden; 
+}
+
+header {
+text-align: center;
+background-color: #cc0000;
+padding: 15px;
+border-bottom: 2px solid #cc0000;
+font-family: "Courier New";
+width: 600px;  /* 👈 Sets a fixed width (e.g., 600 pixels) */
+    margin: 0 auto;
+}
+.mario-container {
+    /* Anchors the element to the browser window, ignoring scrolling */
+    position: fixed; 
+
+    /* Pushes the element to the right edge */
+    right: 30px; 
+    
+    /* Pushes the element to the bottom edge */
+    bottom: 30px; 
+
+    /* Ensures the GIF is always visible, even over other content */
+    z-index: 1000; 
+    transition: transform 0.3s ease-in-out;
+    
+}
+.mario-container img {
+
+width: 100px;
+height: auto;
+}
+.mario-container:hover {
+    /* 1. MOVEMENT: Makes the image scale up to 1.1 times its size */
+    transform: scale(1.1); 
+    
+    /* 2. MOVEMENT: Optionally rotate it a little */
+    /* transform: scale(1.1) rotate(5deg); */
+    
+    /* 3. MOVEMENT: Optionally lift it up slightly */
+    /* transform: translateY(-5px); */
+}
+
+  
+    /* Anchors the element to the browser window, ignoring scrolling */
+   
+
+.center-earth {
+    /* **************************************************** */
+    /* 🔑 CHANGES FOR NEW POSITION */
+    position: fixed; /* ADDED */
+    right: 450px; /* ADDED: Pushes it away from the right edge */
+    bottom: 300px; /* ADDED: Aligns with Mario */
+    margin: 0 auto; /* CHANGED from 40px auto */
+    min-height: 0vh;/* CHANGED from 50vh */
+    width: 200px; /* MODIFIED (Original was 80%) */
+    z-index: 999; /* ADDED to ensure visibility */
+    /* **************************************************** */
+
+    /* Step 1: Set up Flexbox for centering */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+
+    /* Optional: Ensure the text remains centered */
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+.center-earth:hover {
+  transform: scale(1.1);
+}
+
+.top-right-image {
+    /* Must be fixed anchor */
+    position: fixed; 
+   top: 36%;
+  left: 35%;
+    z-index: 1000; 
+    
+    /* 💥 CRITICAL FIX: Allows .thought to be positioned absolutely inside 💥 */
+    
+    width: auto; 
+    height: auto;
+    transition: transform 0.3s ease-in-out; 
+    transform: translate(-50%, -50%); /* ADDED: Center adjustment */
+}
+
+/* ... */
+
+.top-right-image:hover {
+    /* Star container spin/scale */
+    transform: translate(-50%, -50%) rotate(360deg) scale(1.1); /* UPDATED: Keep centering */
+}
+
+/* Star Image (The fixed anchor image) */
+
+.top-right-image > img {
+    width: 150px; /* Set star's size */
+    height: auto;
+    filter: drop-shadow(0 0 10px gold); 
+}
+
+
+
+.top-right-image:hover .thought {
+    opacity: 1; 
+    transform: scale(1); 
+    pointer-events: auto; 
+}
+
+
+.thought {
+    /* ... existing positioning, opacity, and transition styles ... */
+    position: absolute; 
+    width: 250px; 
+    height: 250px; 
+    top: -250px;
+    left: -250px;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.5);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+
+    /* 💥 MODIFICATION START 💥 */
+    
+    /* Use the thought image as the container background */
+    background-image: url('speak.png'); 
+    background-size: contain; /* Ensures the image fits */
+    background-repeat: no-repeat;
+    
+    /* Center the text within the container */
+    display: flex;
+    flex-direction: column;
+  
+    align-items: center;
+   
+    
+    /* 💥 CRITICAL FOR RAISING: Change how items are aligned vertically 💥 */
+    /* Remove 'justify-content: center' or set it to 'flex-start' */
+    justify-content: flex-start; 
+    text-align: center; 
+    padding: 30px; /* Add padding so text doesn't touch the edges */
+    
+    /* 💥 MODIFICATION END 💥 */
+}
+.thought h{ font-size: 14px;
+    font-weight: bold;
+   margin-top: 50px; /* 👈 Pushes the paragraph down from the top edge */
+    margin-bottom: 0px; 
+   
+    
+    /* Ensure the text doesn't overflow the sides */
+    max-width: 100%; 
+    box-sizing: border-box;
+}
+.thought p{
+    /* Style the text to make it legible against the thought bubble image */
+    color: black; 
+    font-size: 14px;
+    font-weight: bold;
+   margin-top: 20px; /* 👈 Pushes the paragraph down from the top edge */
+    margin-bottom: 0px; 
+   
+    
+    /* Ensure the text doesn't overflow the sides */
+    max-width: 100%; 
+    box-sizing: border-box;
+}
+
+h {
+  color: black;
+  text-align: center;
+  font-family: "Courier New";
+}
+p { color: red;
+  text-align: center;
+  font-family: "Courier New";
+}
+
+@media (max-width: 767px) {
+
+    /* --- General Fixed Elements Adjustment --- */
+    /* Reduce the size of the images */
+.mario-container img {
+        width: 100px; /* Make Mario large, even if others are 50px */
+        height: auto;
+    } 
+     /* Make Mario sit on the bottom right corner */
+    .mario-container {
+        right: 10px;  /* Closer to the edge */
+        bottom: 10px; /* Closer to the bottom */
+        z-index: 1000;
+        /* Keep position: fixed */
+    }
+
+    .top-right-image > img {
+        width: 50px; /* Adjust to a smaller size */
+        height: auto;
+    }
+    
+    /* Center Earth adjustment */
+    .center-earth img {
+        /* Reduce its width */
+        width: 100px;
+        /* Remove the minimum height so it doesn't take up half the screen */
+        min-height: auto; 
+    }
+
+    /* --- Positioning Adjustments for Mobile Screens --- */
+    
+    /* Make Mario sit on the bottom right corner */
+  
+    .center-earth {
+        right: 90px; /* Moves it closer to the center */
+        bottom: 205px; /* Moves it up slightly from the bottom */
+        /* Keep position: fixed */
+    }
+
+    /* Move the Star (.top-right-image) to a more central, less intrusive spot */
+   .top-right-image {
+        /* Move the entire star/thought container closer to the top-right corner */
+        top: 25%; /* Adjusted from 50% - moves it higher */
+        left: 80%; /* Adjusted from 50% - moves it further right */
+        transform: translate(-50%, -50%); 
+    }
+
+    /* --- Thought Bubble Container (.thought) Adjustment --- */
+    .thought {
+        /* Reduce the container size */
+        width: 150px;       /* Smaller width */
+        height: 120px;      /* Smaller height */
+        
+        /* Adjust offset to position the bubble above/left of the smaller star (50px) */
+        top: -100px;        /* Adjusted from -150px */
+        left: -100px;       /* Adjusted from -150px */
+        
+        /* REDUCE PADDING */
+        padding: 8px;      
+        
+        /* Set background image size */
+        background-size: 100px auto; /* Reduced image size, maintaining aspect ratio */
+        background-position: center top; 
+        
+        /* FLEXBOX FIX: The "gap" creates space between items */
+        gap: 0px; 
+    }
+
+    /* --- Text Alignment Fix: The most important change --- */
+    .thought h {
+        font-size: 6px;
+        font-weight: bold;
+        color: black;
+
+        /* PUSH THE HEADER DOWN: Use margin-top to create the required space */
+        margin-top: 15px; /* Tweak this value to center the text in the bubble */
+        margin-bottom: 5px; 
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .thought p {
+      font-size: 6px;
+    color: black;
+    font-weight: normal;
+    
+    /* 1. Adjust vertical spacing */
+    margin-top: -5px; 
+    margin-bottom: 3px; /* Slightly less space below */
+    
+    /* 2. CRITICAL: Allow text to use more horizontal space */
+    max-width: 50%; /* Increased from 70% to 90% */
+    
+    /* 3. OPTIONAL: Reduce the space between lines */
+    line-height: 1; 
+
+    box-sizing: border-box;
+    /* Center the paragraph text within its container's width */
+  
+}
+
+   
+
+    /* Ensure the header is full-width on mobile */
+    header {
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box; /* Ensures padding/border don't cause overflow */
+    }
+    .s1 {
+    /* Reduce padding from the sides if it looks too cramped */
+    padding: 20px 10px; 
+    
+    /* Pushes the content down from the header */
+    margin-top: 10px; 
+}
+
+/* If you need the main content shifted down to avoid overlapping the fixed star image: */
+body {
+    padding-top: 70px; /* Add space at the top of the page */
+}
+
+
+}
+  
